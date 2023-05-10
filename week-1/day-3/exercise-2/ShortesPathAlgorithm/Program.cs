@@ -223,7 +223,8 @@
                 visited[i] = false;
             }
 
-            distances[source] = int.MinValue;
+            // Debugged the code and found this error, the value for the distances[source] should be 0.
+            distances[source] = 0;
 
             for (int count = 0; count < vertices - 1; count++)
             {
