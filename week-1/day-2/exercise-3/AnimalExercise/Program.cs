@@ -1,10 +1,45 @@
-﻿namespace AnimalExercise
+﻿using System;
+
+public abstract class Animal
 {
-    internal class Program
+    public abstract string Sound { get; }
+
+    public virtual void Move()
     {
-        static void Main(string[] args)
+        Console.WriteLine("Moving...");
+    }
+}
+
+public class Cat : Animal
+{
+    public override string Sound => "Meow";
+
+    public override void Move()
+    {
+        Console.WriteLine("Walking like a cat...");
+    }
+}
+
+public class Dog : Animal
+{
+    public override string Sound => "Woof";
+
+    public override void Move()
+    {
+        Console.WriteLine("Running like a dog...");
+    }
+}
+
+class Program
+{
+    static void Main(string[] args)
+    {
+        Animal[] animals = new Animal[] { new Cat(), new Dog() };
+
+        foreach (Animal animal in animals)
         {
-            // Create a list of Animal objects, add Dog and Cat instances, and call their methods
+            Console.WriteLine($"The {animal.GetType().Name} goes {animal.Sound}");
+            animal.Move();
         }
     }
 }
