@@ -1,4 +1,6 @@
-﻿namespace AsyncAwaitBasics
+﻿using System.Diagnostics;
+
+namespace AsyncAwaitBasics
 {
     internal class Program
     {
