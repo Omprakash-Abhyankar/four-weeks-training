@@ -1,0 +1,3 @@
+2023-05-12 13:37:39 - Application started.
+2023-05-12 13:37:39 - Processing data...
+2023-05-12 13:37:39 - Application finished.
