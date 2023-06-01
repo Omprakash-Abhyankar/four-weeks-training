@@ -1,0 +1,44 @@
+<!-- <p>header works!</p> -->
+<nav class="nav">
+  <h1><a routerLink="/">E-COMMERCE</a></h1>
+  <div *ngIf="menuType==='default'" class="nav-search">
+    <!-- keyup event is a keyboard event that occurs when a key on the keyboard is released after being pressed.
+       It is triggered when the user releases a key after it has been pressed down. -->
+
+       <!-- The blur event fires when an element has lost focus. The opposite of blur is focus .
+         This event is not cancelable and does not bubble. -->
+    <input type="text"
+    #searchInput
+    (keyup)="searchProduct($event)" (blur)="hideSearch()" placeholder="Search for Products">
+    <button (click)="submitSearch(searchInput.value)" >Search</button>
+    <ul class="suggested-result" *ngIf="searchResult">
+      <li  *ngFor="let item of searchResult">
+       <!-- mousedown:- event that occurs when a mouse button is pressed down.  -->
+       <!-- jab hum search bar search krte hai uske baad jo suggestion aate hai aur us suggestion hum click krte hai  -->
+       <!-- tub hume ye fire krna hai -->
+        <a (mousedown)="redirectToDetails(item.id)">{{item.name}}</a>
+      </li>
+    </ul>
+   </div>
+   <div [ngSwitch]="menuType">
+   <ul *ngSwitchCase="'default'">
+    <li><a routerLink="/seller-auth">Seller</a></li>
+    <li><a routerLink="/home">Home</a></li>
+      <li><a  routerLink="/user-auth">Login/Sign-Up</a></li>
+       <li><a href="#">Cart({{cartItems}})</a></li>
+   </ul>
+   <ul *ngSwitchCase="'user'">
+    <li><a routerLink="/seller-auth">Seller</a></li>
+    <li><a routerLink="/home">Home</a></li>
+      <li><a  routerLink="/user-auth">{{userName | titlecase}}</a></li>
+      <li><a (click)="userLogout()">Logout</a></li>
+       <li><a href="#">Cart({{cartItems}})</a></li>
+   </ul>
+   <ul *ngSwitchCase="'seller'">
+    <li><a routerLink="/seller-add-product">Add Product</a></li>
+    <li><a routerLink="/seller-home">Product List</a></li>
+    <li><a (click)="logout()">Logout</a></li>
+    <li><a href="#">{{sellerName | titlecase}}</a></li>
+   </ul>
+  </div>
+</nav>
